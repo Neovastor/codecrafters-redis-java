@@ -20,11 +20,11 @@ public class Main {
       clientSocket = serverSocket.accept();
 
 //      DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
-      DataOutputStream dout = new DataOutputStream(clientSocket.getOutputStream());
 //      String str = dis.readUTF();
 //      if (str.equals("PING")){
 //      }
-      dout.writeUTF("+PONG\\r\\n");
+      DataOutputStream dout = new DataOutputStream(clientSocket.getOutputStream());
+      dout.writeBytes("+PONG\r\n");
       dout.flush();
     } catch (IOException e) {
       System.out.println("IOException: " + e.getMessage());
