@@ -1,3 +1,4 @@
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -14,10 +15,13 @@ public class Main {
       // Wait for connection from client.
       clientSocket = serverSocket.accept();
 
+      DataInputStream din = new DataInputStream(clientSocket.getInputStream());
       DataOutputStream dout = new DataOutputStream(clientSocket.getOutputStream());
 
       String str = "start";
       while (!str.equals("stop")) {
+        int read = din.read();
+
         dout.writeBytes("+PONG\r\n");
         dout.flush();
       }
