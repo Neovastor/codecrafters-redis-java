@@ -36,10 +36,10 @@ public class Main {
       //          System.out.println(i);
       //        }
       //      }
-//      while (!clientSocket.isClosed()) {
+      while (!clientSocket.isClosed()) {
         dout.writeBytes("+PONG\r\n");
         dout.flush();
-//      }
+      }
 
     } catch (IOException e) {
       System.out.println("IOException: " + e.getMessage());
