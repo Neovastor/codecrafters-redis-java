@@ -23,10 +23,12 @@ public class Main {
 
       String line = "";
 
+      int readByte;
       // reads message from client until "Over" is sent
       while (!line.equals("Over")) {
         try {
-          line = din.readUTF();
+          readByte = din.read();
+//          line = din.readUTF();
 //          System.out.println(line);
           dout.writeBytes("+PONG\r\n");
 //          dout.writeUTF("PONG");
