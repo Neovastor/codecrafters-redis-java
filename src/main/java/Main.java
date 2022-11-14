@@ -15,16 +15,24 @@ public class Main {
       // Wait for connection from client.
       clientSocket = serverSocket.accept();
 
+      // takes input from the client socket
       DataInputStream din = new DataInputStream(clientSocket.getInputStream());
+
+      // send output to the client socket
       DataOutputStream dout = new DataOutputStream(clientSocket.getOutputStream());
 
-      String str = "start";
-      while (!str.equals("stop")) {
-        int read = din.read();
-        if ( read != 0){
-          dout.writeBytes("+PONG\r\n");
-          dout.flush();
+      String line = "";
 
+      // reads message from client until "Over" is sent
+      while (!line.equals("Over")) {
+        try {
+          line = din.readUTF();
+//          System.out.println(line);
+          dout.writeBytes("+PONG\r\n");
+//          dout.writeUTF("PONG");
+          dout.flush();
+        } catch (IOException i) {
+          System.out.println(i);
         }
       }
     } catch (IOException e) {
