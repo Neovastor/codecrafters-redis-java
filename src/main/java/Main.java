@@ -25,18 +25,19 @@ public class Main {
 
       int readByte;
       // reads message from client until "Over" is sent
-      while (!line.equals("Over")) {
-        try {
-          readByte = din.read();
-//          line = din.readUTF();
-//          System.out.println(line);
-          dout.writeBytes("+PONG\r\n");
-//          dout.writeUTF("PONG");
-          dout.flush();
-        } catch (IOException i) {
-          System.out.println(i);
-        }
-      }
+      //      while (!line.equals("Over")) {
+      //        try {
+      //          readByte = din.read();
+      //        line = din.readUTF();
+      //          System.out.println(line);
+      //          dout.writeUTF("+PONG\r\n");
+      //          dout.flush();
+      //        } catch (IOException i) {
+      //          System.out.println(i);
+      //        }
+      //      }
+      dout.writeUTF("+PONG\r\n");
+      dout.flush();
     } catch (IOException e) {
       System.out.println("IOException: " + e.getMessage());
     } finally {
