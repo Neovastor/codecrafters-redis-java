@@ -19,18 +19,20 @@ public class Main {
       // Wait for connection from client.
       clientSocket = serverSocket.accept();
 
-//      DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
-//      String str = dis.readUTF();
-//      if (str.equals("PING")){
-//      }
+      DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
+      String str = dis.readUTF();
+
       DataOutputStream dout = new DataOutputStream(clientSocket.getOutputStream());
       dout.writeBytes("+PONG\r\n");
       dout.flush();
+//      if (str.equals("PING")){
+//
+//      }
     } catch (IOException e) {
       System.out.println("IOException: " + e.getMessage());
     } finally {
       try {
-        if (clientSocket != null) {
+        if (clientSocket == null) {
           clientSocket.close();
         }
       } catch (IOException e) {
