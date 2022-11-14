@@ -1,4 +1,3 @@
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -6,11 +5,7 @@ import java.net.Socket;
 
 public class Main {
   public static void main(String[] args) {
-    // You can use print statements as follows for debugging, they'll be visible when running tests.
-    System.out.println("Logs from your program will appear here!");
-
-    //  Uncomment this block to pass the first stage
-    ServerSocket serverSocket;
+    ServerSocket serverSocket = null;
     Socket clientSocket = null;
     int port = 6379;
     try {
@@ -19,20 +14,14 @@ public class Main {
       // Wait for connection from client.
       clientSocket = serverSocket.accept();
 
-      DataInputStream dis = new DataInputStream(clientSocket.getInputStream());
-      String str = dis.readUTF();
-
       DataOutputStream dout = new DataOutputStream(clientSocket.getOutputStream());
       dout.writeBytes("+PONG\r\n");
       dout.flush();
-//      if (str.equals("PING")){
-//
-//      }
     } catch (IOException e) {
       System.out.println("IOException: " + e.getMessage());
     } finally {
       try {
-        if (clientSocket == null) {
+        if (clientSocket != null) {
           clientSocket.close();
         }
       } catch (IOException e) {
