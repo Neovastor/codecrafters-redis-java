@@ -15,8 +15,12 @@ public class Main {
       clientSocket = serverSocket.accept();
 
       DataOutputStream dout = new DataOutputStream(clientSocket.getOutputStream());
-      dout.writeBytes("+PONG\r\n");
-      dout.flush();
+
+      String str = "start";
+      while (!str.equals("stop")) {
+        dout.writeBytes("+PONG\r\n");
+        dout.flush();
+      }
     } catch (IOException e) {
       System.out.println("IOException: " + e.getMessage());
     } finally {
