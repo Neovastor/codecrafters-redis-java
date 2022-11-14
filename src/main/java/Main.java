@@ -21,9 +21,11 @@ public class Main {
       String str = "start";
       while (!str.equals("stop")) {
         int read = din.read();
+        if ( read != 0){
+          dout.writeBytes("+PONG\r\n");
+          dout.flush();
 
-        dout.writeBytes("+PONG\r\n");
-        dout.flush();
+        }
       }
     } catch (IOException e) {
       System.out.println("IOException: " + e.getMessage());
